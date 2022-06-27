@@ -1,25 +1,42 @@
 <template>
-    <main class="flex-column flex-center">
-        <h2>List</h2>
-        <Task />
-        <Task />
-    </main>
+    <div class="tasks-list flex-column">
+        <h2>Tasks List</h2>
+        <Task
+            @remove-task="deleteTask"
+            v-for="task in tasksList"
+            :key="task.taskId"
+            :task="task"
+        />
+    </div>
+    <NewTask @new-task="addTask" />
 </template>
 
 <script setup>
 import Task from "./Task.vue";
+import NewTask from "./NewTask.vue";
+import { reactive } from "@vue/reactivity";
+
+const tasksList = reactive([]);
+
+const addTask = (task) => {
+    tasksList.unshift(task);
+};
+
+// DELETE TASK -
 </script>
 
-<style scoped>
-main {
-    width: clamp(50%, 80rem, 60%);
+<!-- Add DELETE and EDIT actions -->
 
-    padding: 3rem;
+<style scoped>
+.tasks-list {
+    width: var(--width);
+
+    padding: var(--main-padding);
     background-color: var(--color-bg2);
 
     gap: 3rem;
 
-    border-radius: 15px;
-    box-shadow: 0 0 15px 2px hsl(0, 0%, 50%, 0.3);
+    border-radius: var(--border-radius-big);
+    box-shadow: var(--box-shadow-main);
 }
 </style>

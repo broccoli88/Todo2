@@ -1,32 +1,34 @@
 <template>
     <div class="task">
         <input class="task__checkbox" type="checkbox" />
-        <p class="task__content">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem
-            delectus omnis maxime soluta iste quisquam obcaecati totam, ipsam a
-            facere, exercitationem deserunt perferendis ab unde, est ducimus
-            nesciunt ut! Dolorem.
-        </p>
+        <p class="task__content">{{ task.content }}</p>
         <div class="task__actions flex">
-            <Action />
-            <!-- <span class="actions__action flex">
-                <Icon
-                    icon="icomoon-free:bin"
-                    color="black"
-                    width="16"
-                    height="16"
-                />
-                Delete
-            </span>
-            <span class="actions__action flex">
-                <Icon
-                    icon="akar-icons:edit"
-                    color="black"
-                    width="16  "
-                    height="16"
-                />
-                Edit
-            </span> -->
+            <Action>
+                <template v-slot:delete-task>
+                    <div @click="removeTask" class="action__button flex">
+                        <Icon
+                            icon="icomoon-free:bin"
+                            color="black"
+                            width="16"
+                            height="16"
+                        />
+                        Delete
+                    </div>
+                </template>
+
+                <template v-slot:edit-task>
+                    <div class="action__button flex">
+                        <Icon
+                            icon="bx:edit"
+                            color="black"
+                            width="22"
+                            height="22"
+                            :inline="true"
+                        />
+                        Edit
+                    </div>
+                </template>
+            </Action>
         </div>
     </div>
 </template>
@@ -34,6 +36,16 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import Action from "./Action.vue";
+
+const emits = defineEmits(["remove-task"]);
+const props = defineProps(["task"]);
+
+// REMOVING TASK
+const removeTask = () => {
+    let taskId = props.task.taskId;
+
+    emits("remove-task", taskId);
+};
 </script>
 
 <style scoped>
@@ -44,12 +56,16 @@ import Action from "./Action.vue";
     grid-template-areas:
         "task__checkbox task__content"
         ". task__actions";
+
+    align-items: stretch;
 }
 .task__checkbox {
     grid-area: task__checkbox;
     margin-top: 0.4em;
     display: inline-block;
-    justify-self: center;
+    justify-self: start;
+    width: 20px;
+    height: 20px;
 }
 
 .task__content {
@@ -58,8 +74,12 @@ import Action from "./Action.vue";
 
 .task__actions {
     grid-area: task__actions;
-    gap: 2rem;
-
     margin-top: 2rem;
+}
+
+.action__button {
+    margin-right: 2rem;
+    align-items: center;
+    gap: 0.6rem;
 }
 </style>

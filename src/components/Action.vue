@@ -1,12 +1,11 @@
 <template>
     <div class="action flex">
-        <Icon icon="icomoon-free:bin" color="black" width="16" height="16" />
-        Delete
+        <slot name="delete-task"> </slot>
+        <slot name="edit-task"></slot>
     </div>
 </template>
 
 <script setup>
-import { Icon } from "@iconify/vue";
 </script>
 
 <style scoped>

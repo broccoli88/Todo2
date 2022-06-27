@@ -9,6 +9,15 @@
   --color-accent: #ff4e62;
 
   --color-font: hsl(0, 0%, 20%);
+
+  --width: clamp(50%, 80rem, 60%);
+  --main-padding: 3rem;
+
+  --border-radius-big: 15px;
+  --border-radius-small: 8px;
+
+  --box-shadow-main: 0 0 15px 2px hsl(0, 0%, 50%, 0.3);
+  --box-shadow-subsid: 0 0 8px 2px hsl(0, 0%, 50%, 0.3);
 }
 
 *,
@@ -38,7 +47,8 @@ h3 {
 
 h1 {
   font-weight: 800;
-  margin: 0;
+  font-size: 4rem;
+  margin: 2rem;
   color: var(--color-primary-dark);
 }
 
