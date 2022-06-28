@@ -16,16 +16,26 @@ import Task from "./Task.vue";
 import NewTask from "./NewTask.vue";
 import { reactive } from "@vue/reactivity";
 
-const tasksList = reactive([]);
+let tasksList = reactive([]);
 
 const addTask = (task) => {
     tasksList.unshift(task);
 };
 
-// DELETE TASK -
+// DELETE TASK
+
+const deleteTask = (taskId) => {
+    tasksList.forEach((task, index) => {
+        if (taskId === task.taskId) {
+            tasksList.splice(index, 1);
+        }
+    });
+};
 </script>
 
 <!-- Add DELETE and EDIT actions -->
+
+
 
 <style scoped>
 .tasks-list {

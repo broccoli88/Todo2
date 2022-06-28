@@ -1,7 +1,6 @@
 <template>
     <div class="action flex">
         <slot name="delete-task"> </slot>
-        <slot name="edit-task"></slot>
     </div>
 </template>
 

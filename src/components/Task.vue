@@ -15,19 +15,6 @@
                         Delete
                     </div>
                 </template>
-
-                <template v-slot:edit-task>
-                    <div class="action__button flex">
-                        <Icon
-                            icon="bx:edit"
-                            color="black"
-                            width="22"
-                            height="22"
-                            :inline="true"
-                        />
-                        Edit
-                    </div>
-                </template>
             </Action>
         </div>
     </div>

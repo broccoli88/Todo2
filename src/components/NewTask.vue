@@ -19,6 +19,7 @@
 import { ref } from "@vue/reactivity";
 
 const emits = defineEmits(["new-task"]);
+const props = defineProps(["edit-task"]);
 
 const input = ref("");
 const addTask = () => {
